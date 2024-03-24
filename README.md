@@ -23,8 +23,8 @@ https://youtu.be/NlLBMyig6ro
 - Below is the testing prompt.
 
 ```
-This is the task of TEXT EXTRACTION, NO CALCULATION is needed, return "" if data cannot be found in the given text. Give the answer in json format.
-What is the Total of Average ROP from the below? The data below is extracted from structured and unstructured data, thus you need to identify the required data for answer in unstructured or structured tables for precise extraction.
+This is the task of TEXT EXTRACTION, NO CALCULATION is needed, return "" if data cannot be found in the given text. Only give the answer for the question, nothing else. Output in json format. Just give answer, don't explain.
+What is the Azi from the below? The data below is extracted from structured and unstructured data, thus you need to identify the required data for answer in unstructured or structured tables for precise extraction.
 
  DAILY MUDLOGGING REPORT
 WELL INFORMATION:
@@ -77,5 +77,66 @@ Min/Max/Avg
 1795.0 2.1 / 213.8 /
 41.97 0 / 25.6 / 1.1 68 / 162 / 136 0 / 64 / 46 0 / 18.4 / 4.63 850 / 1156 / 1125 1277 / 2331 / 2016
 ```
+The template of Phi-2 is used to further check the performance of different Phi-2 models:
 
+```
+<|im_start|>system
+This is the task of TEXT EXTRACTION, NO CALCULATION is needed, return "" if data cannot be found in the given text. Only give the answer for the question, nothing else. Output in json format. Just give answer, don't explain.
+<|im_end|>
+<|im_start|>user
+What is the Azi from the below? The data below is extracted from structured and unstructured data, thus you need to identify the required data for answer in unstructured or structured tables for precise extraction.
+
+DAILY MUDLOGGING REPORT
+WELL INFORMATION:
+Rig: JACK BATES  Field: ICHTHYS  Well: BDC-1B-03  Planned TD : 5234.0 mMDRT
+Planned TVDRT : 4112.0 m
+
+Date:  30Apr-2016 Report #:  08 Corresponding DDR:  08
+
+Midnight Depths  MD:  1795.0  mMDRT TVDBRT:  1794.11 mTVDRT  TVDLAT: -1765.11  m
+Last Deviation survey Depth: 1781.66 mMDRT Inc: 3.27° Azi: 311.52°
+Last casing:  Size:  20"  Shoe depth: 702.94 mMDRT
+Liner:   Size:    Shoe depth:
+
+Hydraulics:
+OPERATIONS SUMMARY (last 24 hrs)
+Drilled 17 ½" hole from 1044.0 mMDRT to 1795.0 mMDRT.
+
+Note: Estimated down hole Losses: 628 bbls                                                                                  Esti mated 24 Hour Surface Losses : 1187 bbls
+DAILY TIME ANALYSIS (Hours): FORMATION
+ Drilled from
+(m) Drilled
+to (m)  Meterage
+(m) Rotary Drilling hours on
+bottom (hrs)  Sliding Drilling
+hours (hrs) Average ROP
+(m/hr)  Hours in hole
+( hrs)  Pumping Hours
+( hrs)
+Daily 1044 1795 751.0 16.62 1.25 41.97 24.0 21.94
+Total 710.8 1795 1084.2 24.74 4.23 37.42 45.75 37.12
+
+DRILLING FORMATION
+Depth Interval
+(m)
+ ROP range
+(m/hr)
+Min/Max/Avg  WOB range
+(Klbm)
+Min/Max/Avg  BIT RPM range
+( 1/min)
+Min/Max/Avg  TD RPM range
+(1/min)
+Min/Max/Avg  Torque range
+(Klbf.f)
+Min/Max/Avg  Flow Pumps
+(gpm)
+Min/Max/Avg  SPP (psi)
+Min/Max/Avg
+1044.0-
+1795.0 2.1 / 213.8 /
+41.97 0 / 25.6 / 1.1 68 / 162 / 136 0 / 64 / 46 0 / 18.4 / 4.63 850 / 1156 / 1125 1277 / 2331 / 2016
+<|im_end|>
+<|im_start|>assistant
+```
 - Arena (side-by-side) in chat.lmsys.org is used to test the models.
