@@ -84,3 +84,50 @@ Min/Max/Avg
 <|im_start|>assistant
 ```
 - Arena (side-by-side) in chat.lmsys.org is used to test the models.
+- Some prompt engineering techniques are used to guide the model to the expected format.
+```
+<|im_start|>system
+This is a text extraction task. You must ONLY output the requested data in valid JSON format, without any other text or explanation whatsoever. If the requested data cannot be found, output an empty JSON object {}.
+<|im_end|>
+
+<|im_start|>user
+What is the Azi from the below? The data below is extracted from structured and unstructured data, thus you need to identify the required data for answer in unstructured or structured tables for precise extraction.
+
+Example 1 data:
+DAILY REPORT
+Well Details:
+Rig Name: Prospector
+Well: ABC-123
+Last Survey at 2500m MD:
+Inc: 25.8° Azi: 185.2°
+
+Expected output for example 1:
+{"Azi": 185.2}
+
+Example 2 data:
+MUDLOGGING DATA
+Well: XYZ-09
+...
+3622m Survey Data:
+Inclination: 12.3°
+Azimuth: 92.7°
+
+Expected output for example 2:
+{"Azi": 92.7}
+
+Example 3 data:
+No azimuth data found.
+
+Expected output for example 3:
+{}
+
+Now for the actual data:
+Midnight Depths MD: 1795.0 mMDRT TVDBRT: 1794.11 mTVDRT TVDLAT: -1765.11 m
+Last Deviation survey Depth: 1781.66 mMDRT Inc: 3.27° Azi: 311.52°
+Last casing: Size: 20" Shoe depth: 702.94 mMDRT
+Liner: Size: Shoe depth:
+
+<|im_end|>
+<|im_start|>assistant
+
+```
