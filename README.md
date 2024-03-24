@@ -93,7 +93,7 @@ This is a text extraction task. You must ONLY output the requested data in valid
 <|im_start|>user
 What is the Azi from the below? The data below is extracted from structured and unstructured data, thus you need to identify the required data for answer in unstructured or structured tables for precise extraction.
 
-Example 1 data:
+Example data:
 DAILY REPORT
 Well Details:
 Rig Name: Prospector
@@ -101,25 +101,8 @@ Well: ABC-123
 Last Survey at 2500m MD:
 Inc: 25.8° Azi: 185.2°
 
-Expected output for example 1:
+Expected output for example:
 {"Azi": 185.2}
-
-Example 2 data:
-MUDLOGGING DATA
-Well: XYZ-09
-...
-3622m Survey Data:
-Inclination: 12.3°
-Azimuth: 92.7°
-
-Expected output for example 2:
-{"Azi": 92.7}
-
-Example 3 data:
-No azimuth data found.
-
-Expected output for example 3:
-{}
 
 Now for the actual data:
 Midnight Depths MD: 1795.0 mMDRT TVDBRT: 1794.11 mTVDRT TVDLAT: -1765.11 m
@@ -127,7 +110,41 @@ Last Deviation survey Depth: 1781.66 mMDRT Inc: 3.27° Azi: 311.52°
 Last casing: Size: 20" Shoe depth: 702.94 mMDRT
 Liner: Size: Shoe depth:
 
+Note: Estimated down hole Losses: 628 bbls                                                                                  Esti mated 24 Hour Surface Losses : 1187 bbls
+DAILY TIME ANALYSIS (Hours): FORMATION
+Drilled from
+(m) Drilled
+to (m)  Meterage
+(m) Rotary Drilling hours on
+bottom (hrs)  Sliding Drilling
+hours (hrs) Average ROP
+(m/hr)  Hours in hole
+( hrs)  Pumping Hours
+( hrs)
+Daily 1044 1795 751.0 16.62 1.25 41.97 24.0 21.94
+Total 710.8 1795 1084.2 24.74 4.23 37.42 45.75 37.12
+
+DRILLING FORMATION
+Depth Interval
+(m)
+ROP range
+(m/hr)
+Min/Max/Avg  WOB range
+(Klbm)
+Min/Max/Avg  BIT RPM range
+( 1/min)
+Min/Max/Avg  TD RPM range
+(1/min)
+Min/Max/Avg  Torque range
+(Klbf.f)
+Min/Max/Avg  Flow Pumps
+(gpm)
+Min/Max/Avg  SPP (psi)
+Min/Max/Avg
+1044.0-
+1795.0 2.1 / 213.8 /
+41.97 0 / 25.6 / 1.1 68 / 162 / 136 0 / 64 / 46 0 / 18.4 / 4.63 850 / 1156 / 1125 1277 / 2331 / 2016
+
 <|im_end|>
 <|im_start|>assistant
-
 ```
